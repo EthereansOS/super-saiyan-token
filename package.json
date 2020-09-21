@@ -1,0 +1,23 @@
+{
+  "name": "super-saiyan-token",
+  "version": "1.0.0",
+  "description": "Super Saiya-jin Token. An EthItem Token used for voting purposes in the DFO Protocol",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.2.0",
+    "truffle-flattener-wrapper": "git+https://github.com/b-u-i-d-l/truffle-flattener-wrapper.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b-u-i-d-l/super-saiyan-token.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b-u-i-d-l/super-saiyan-token/issues"
+  },
+  "homepage": "https://github.com/b-u-i-d-l/super-saiyan-token#readme"
+}
