@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+pragma solidity >=0.7.0;
 
 import "./ISuperSaiyanToken.sol";
 import "../eth-item-token-standard/EthItem.sol";
 
 contract SuperSaiyanToken is ISuperSaiyanToken, EthItem(address(0), address(0), "", "") {
-
     address private _doubleProxy;
 
     constructor(
@@ -15,7 +14,7 @@ contract SuperSaiyanToken is ISuperSaiyanToken, EthItem(address(0), address(0), 
         string memory name,
         string memory symbol
     ) public {
-        if(model != address(0)) {
+        if (model != address(0)) {
             init(model, doubleProxy, name, symbol);
         }
     }
@@ -31,13 +30,20 @@ contract SuperSaiyanToken is ISuperSaiyanToken, EthItem(address(0), address(0), 
     }
 
     modifier byDFO {
-        if(_doubleProxy != address(0)) {
-            require(IMVDFunctionalitiesManager(IMVDProxy(IDoubleProxy(_doubleProxy).proxy()).getMVDFunctionalitiesManagerAddress()).isAuthorizedFunctionality(msg.sender), "Unauthorized Action!");
+        if (_doubleProxy != address(0)) {
+            require(
+                IMVDFunctionalitiesManager(
+                    IMVDProxy(IDoubleProxy(_doubleProxy).proxy())
+                        .getMVDFunctionalitiesManagerAddress()
+                )
+                    .isAuthorizedFunctionality(msg.sender),
+                "Unauthorized Action!"
+            );
         }
         _;
     }
 
-    function doubleProxy() public override view returns(address) {
+    function doubleProxy() public override view returns (address) {
         return _doubleProxy;
     }
 
@@ -56,7 +62,7 @@ contract SuperSaiyanToken is ISuperSaiyanToken, EthItem(address(0), address(0), 
         emit UriChanged(objectId, "", objectUri);
     }
 
-    function setUri(uint256 objectId, string memory newUri) public byDFO override {
+    function setUri(uint256 objectId, string memory newUri) public override byDFO {
         emit UriChanged(objectId, _objectUris[objectId], newUri);
         _objectUris[objectId] = newUri;
     }

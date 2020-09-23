@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>IDFOERC20NFTWrapper - super-sayan-token</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "IDFOERC20NFTWrapper";
+    var mkdocs_page_input_path = "out/IDFOERC20NFTWrapper.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> super-sayan-token</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">API</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Contracts</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../SuperSayanToken.md">EthItem</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../DFOERC20NFTWrapper/">IERC1155Views</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">super-sayan-token</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>IDFOERC20NFTWrapper</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="contract-idfoerc20nftwrapper">Contract IDFOERC20NFTWrapper</h2>
+<ul>
+<li><strong>Path:</strong> out/IDFOERC20NFTWrapper.sol</li>
+<li><strong>Version:</strong> 1</li>
+<li><strong>Title:</strong> IDFOERC20NFTWrapper</li>
+</ul>
+<p>This ERC20 Token represents the model of every Super Saiya-jin Token will implement for every minted NFT It just implements the same funcions of the VotingToken of the DFOProtocol, to let it became a Voting Token</p>
+<h2 id="methods">Methods</h2>
+<h3 id="allowanceaddressaddress">allowance(address,address)</h3>
+<p>Returns the remaining number of tokens that <code>spender</code> will be allowed to spend on behalf of <code>owner</code> through {transferFrom}. This is zero by default. This value changes when {approve} or {transferFrom} are called.</p>
+<h3 id="approveaddressuint256">approve(address,uint256)</h3>
+<p>Sets <code>amount</code> as the allowance of <code>spender</code> over the caller's tokens. Returns a boolean value indicating whether the operation succeeded. IMPORTANT: Beware that changing an allowance with this method brings the risk that someone may use both the old and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards: https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729 Emits an {Approval} event.</p>
+<h3 id="balanceofaddress">balanceOf(address)</h3>
+<p>Returns the amount of tokens owned by <code>account</code>.</p>
+<h3 id="getproxy">getProxy()</h3>
+<p>GET the Proxy</p>
+<h3 id="mintuint256">mint(uint256)</h3>
+<p>Mint functionality of the voting token</p>
+<h3 id="setproxy">setProxy()</h3>
+<p>SET the Proxy</p>
+<h3 id="totalsupply">totalSupply()</h3>
+<p>Returns the amount of tokens in existence.</p>
+<h3 id="transferaddressuint256">transfer(address,uint256)</h3>
+<p>Moves <code>amount</code> tokens from the caller's account to <code>recipient</code>. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.</p>
+<h3 id="transferfromaddressaddressuint256">transferFrom(address,address,uint256)</h3>
+<p>Moves <code>amount</code> tokens from <code>sender</code> to <code>recipient</code> using the allowance mechanism. <code>amount</code> is then deducted from the caller's allowance. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

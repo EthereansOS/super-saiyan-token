@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+pragma solidity >=0.7.0;
 
-import "@openzeppelin/contracts/GSN/Context.sol";
-import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/utils/Address.sol";
-import "@openzeppelin/contracts/introspection/ERC165.sol";
-import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
+import "../node_modules/@openzeppelin/contracts/GSN/Context.sol";
+import "../node_modules/@openzeppelin/contracts/math/SafeMath.sol";
+import "../node_modules/@openzeppelin/contracts/utils/Address.sol";
+import "../node_modules/@openzeppelin/contracts/introspection/ERC165.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
 
 import "./IEthItem.sol";
 import "./IERC20NFTWrapper.sol";
@@ -62,7 +62,7 @@ contract EthItem is IEthItem, Context, ERC165 {
         string memory name,
         string memory symbol
     ) public {
-        if(model != address(0)) {
+        if (model != address(0)) {
             init(model, source, name, symbol);
         }
     }
@@ -77,15 +77,9 @@ contract EthItem is IEthItem, Context, ERC165 {
         string memory name,
         string memory symbol
     ) public virtual override {
-        require(
-            _model == address(0),
-            "Init already called!"
-        );
+        require(_model == address(0), "Init already called!");
 
-        require(
-            model != address(0),
-            "Model should be a valid ethereum address"
-        );
+        require(model != address(0), "Model should be a valid ethereum address");
         _model = model;
 
         _source = source;
@@ -101,16 +95,10 @@ contract EthItem is IEthItem, Context, ERC165 {
 
         _registerInterface(this.onERC1155Received.selector);
         _registerInterface(this.onERC1155BatchReceived.selector);
-        bool safeBatchTransferFrom = _checkAndInsertSelector(
-            this.safeBatchTransferFrom.selector
-        );
-        bool cumulativeInterface = _checkAndInsertSelector(
-            _INTERFACEobjectId_ERC1155
-        );
+        bool safeBatchTransferFrom = _checkAndInsertSelector(this.safeBatchTransferFrom.selector);
+        bool cumulativeInterface = _checkAndInsertSelector(_INTERFACEobjectId_ERC1155);
         require(
-            _source == address(0) ||
-                safeBatchTransferFrom ||
-                cumulativeInterface,
+            _source == address(0) || safeBatchTransferFrom || cumulativeInterface,
             "Looks like you're not wrapping a correct ERC1155 Token"
         );
         _checkAndInsertSelector(this.balanceOf.selector);
@@ -140,10 +128,7 @@ contract EthItem is IEthItem, Context, ERC165 {
         returns (uint256 objectId, address tokenAddress)
     {
         require(_source == address(0), "Cannot mint unexisting tokens");
-        require(
-            keccak256(bytes(objectUri)) != keccak256(""),
-            "Uri cannot be empty"
-        );
+        require(keccak256(bytes(objectUri)) != keccak256(""), "Uri cannot be empty");
         (objectId, tokenAddress) = _mint(msg.sender, 0, amount, true);
         _objectUris[objectId] = objectUri;
     }
@@ -160,13 +145,7 @@ contract EthItem is IEthItem, Context, ERC165 {
     ) public virtual override {
         asERC20(objectId).burn(msg.sender, toDecimals(objectId, amount));
         if (_source != address(0)) {
-            IERC1155(_source).safeTransferFrom(
-                address(this),
-                msg.sender,
-                objectId,
-                amount,
-                data
-            );
+            IERC1155(_source).safeTransferFrom(address(this), msg.sender, objectId, amount, data);
         }
     }
 
@@ -180,10 +159,7 @@ contract EthItem is IEthItem, Context, ERC165 {
         bytes memory data
     ) public virtual override {
         for (uint256 i = 0; i < objectIds.length; i++) {
-            asERC20(objectIds[i]).burn(
-                msg.sender,
-                toDecimals(objectIds[i], amounts[i])
-            );
+            asERC20(objectIds[i]).burn(msg.sender, toDecimals(objectIds[i], amounts[i]));
         }
         if (_source != address(0)) {
             IERC1155(_source).safeBatchTransferFrom(
@@ -250,10 +226,7 @@ contract EthItem is IEthItem, Context, ERC165 {
         name = _name;
         symbol = _symbol;
         decimals = 18;
-        if (
-            _source != address(0) &&
-            (_supportsName || _supportsSymbol || _supportsDecimals)
-        ) {
+        if (_source != address(0) && (_supportsName || _supportsSymbol || _supportsDecimals)) {
             IERC1155Views views = IERC1155Views(_source);
             name = _supportsName ? views.name(objectId) : name;
             symbol = _supportsSymbol ? views.symbol(objectId) : symbol;
@@ -304,13 +277,7 @@ contract EthItem is IEthItem, Context, ERC165 {
     /**
      * @dev Gives back the address of the ERC20 Token representing this Token Id
      */
-    function asERC20(uint256 objectId)
-        public
-        virtual
-        override
-        view
-        returns (IERC20NFTWrapper)
-    {
+    function asERC20(uint256 objectId) public virtual override view returns (IERC20NFTWrapper) {
         return IERC20NFTWrapper(_dest[objectId]);
     }
 
@@ -318,13 +285,7 @@ contract EthItem is IEthItem, Context, ERC165 {
      * @dev Returns the total supply of the given token id
      * @param objectId the id of the token whose availability you want to know
      */
-    function totalSupply(uint256 objectId)
-        public
-        virtual
-        override
-        view
-        returns (uint256)
-    {
+    function totalSupply(uint256 objectId) public virtual override view returns (uint256) {
         return fromDecimals(objectId, asERC20(objectId).totalSupply());
     }
 
@@ -332,13 +293,7 @@ contract EthItem is IEthItem, Context, ERC165 {
      * @dev Returns the name of the given token id
      * @param objectId the id of the token whose name you want to know
      */
-    function name(uint256 objectId)
-        public
-        virtual
-        override
-        view
-        returns (string memory)
-    {
+    function name(uint256 objectId) public virtual override view returns (string memory) {
         return asERC20(objectId).name();
     }
 
@@ -350,13 +305,7 @@ contract EthItem is IEthItem, Context, ERC165 {
      * @dev Returns the symbol of the given token id
      * @param objectId the id of the token whose symbol you want to know
      */
-    function symbol(uint256 objectId)
-        public
-        virtual
-        override
-        view
-        returns (string memory)
-    {
+    function symbol(uint256 objectId) public virtual override view returns (string memory) {
         return asERC20(objectId).symbol();
     }
 
@@ -368,13 +317,7 @@ contract EthItem is IEthItem, Context, ERC165 {
      * @dev Returns the decimals of the given token id
      * @param objectId the id of the token whose decimals you want to know
      */
-    function decimals(uint256 objectId)
-        public
-        virtual
-        override
-        view
-        returns (uint256)
-    {
+    function decimals(uint256 objectId) public virtual override view returns (uint256) {
         return asERC20(objectId).decimals();
     }
 
@@ -382,17 +325,8 @@ contract EthItem is IEthItem, Context, ERC165 {
      * @dev Returns the uri of the given token id
      * @param objectId the id of the token whose uri you want to know
      */
-    function uri(uint256 objectId)
-        public
-        virtual
-        override
-        view
-        returns (string memory)
-    {
-        return
-            _source == address(0)
-                ? _objectUris[objectId]
-                : IERC1155Views(_source).uri(objectId);
+    function uri(uint256 objectId) public virtual override view returns (string memory) {
+        return _source == address(0) ? _objectUris[objectId] : IERC1155Views(_source).uri(objectId);
     }
 
     /**
@@ -411,10 +345,13 @@ contract EthItem is IEthItem, Context, ERC165 {
     /**
      * @dev Classic ERC1155 Standard Method
      */
-    function balanceOfBatch(
-        address[] memory accounts,
-        uint256[] memory objectIds
-    ) public virtual override view returns (uint256[] memory) {
+    function balanceOfBatch(address[] memory accounts, uint256[] memory objectIds)
+        public
+        virtual
+        override
+        view
+        returns (uint256[] memory)
+    {
         uint256[] memory balances = new uint256[](accounts.length);
         for (uint256 i = 0; i < accounts.length; i++) {
             balances[i] = balanceOf(accounts[i], objectIds[i]);
@@ -424,16 +361,9 @@ contract EthItem is IEthItem, Context, ERC165 {
     /**
      * @dev Classic ERC1155 Standard Method
      */
-    function setApprovalForAll(address operator, bool approved)
-        public
-        virtual
-        override
-    {
+    function setApprovalForAll(address operator, bool approved) public virtual override {
         address sender = _msgSender();
-        require(
-            sender != operator,
-            "ERC1155: setting approval status for self"
-        );
+        require(sender != operator, "ERC1155: setting approval status for self");
 
         _operatorApprovals[sender][operator] = approved;
         emit ApprovalForAll(sender, operator, approved);
@@ -474,14 +404,7 @@ contract EthItem is IEthItem, Context, ERC165 {
 
         emit TransferSingle(operator, from, to, objectId, amount);
 
-        _doSafeTransferAcceptanceCheck(
-            operator,
-            from,
-            to,
-            objectId,
-            amount,
-            data
-        );
+        _doSafeTransferAcceptanceCheck(operator, from, to, objectId, amount, data);
     }
 
     /**
@@ -501,31 +424,26 @@ contract EthItem is IEthItem, Context, ERC165 {
         );
 
         for (uint256 i = 0; i < objectIds.length; i++) {
-            asERC20(objectIds[i]).transferFrom(
-                from,
-                to,
-                toDecimals(objectIds[i], amounts[i])
-            );
+            asERC20(objectIds[i]).transferFrom(from, to, toDecimals(objectIds[i], amounts[i]));
         }
 
         address operator = _msgSender();
 
         emit TransferBatch(operator, from, to, objectIds, amounts);
 
-        _doSafeBatchTransferAcceptanceCheck(
-            operator,
-            from,
-            to,
-            objectIds,
-            amounts,
-            data
-        );
+        _doSafeBatchTransferAcceptanceCheck(operator, from, to, objectIds, amounts, data);
     }
 
-    function emitTransferSingleEvent(address sender, address from, address to, uint256 objectId, uint256 amount) public override {
+    function emitTransferSingleEvent(
+        address sender,
+        address from,
+        address to,
+        uint256 objectId,
+        uint256 amount
+    ) public override {
         require(_dest[objectId] == msg.sender, "Unauthorized Action!");
         uint256 entireAmount = fromDecimals(objectId, amount);
-        if(entireAmount == 0) {
+        if (entireAmount == 0) {
             return;
         }
         emit TransferSingle(sender, from, to, objectId, entireAmount);
@@ -540,18 +458,10 @@ contract EthItem is IEthItem, Context, ERC165 {
         bytes memory data
     ) internal virtual {
         if (to.isContract()) {
-            try
-                IERC1155Receiver(to).onERC1155Received(
-                    operator,
-                    from,
-                    id,
-                    amount,
-                    data
-                )
-            returns (bytes4 response) {
-                if (
-                    response != IERC1155Receiver(to).onERC1155Received.selector
-                ) {
+            try IERC1155Receiver(to).onERC1155Received(operator, from, id, amount, data) returns (
+                bytes4 response
+            ) {
+                if (response != IERC1155Receiver(to).onERC1155Received.selector) {
                     revert("ERC1155: ERC1155Receiver rejected tokens");
                 }
             } catch Error(string memory reason) {
@@ -572,18 +482,9 @@ contract EthItem is IEthItem, Context, ERC165 {
     ) internal virtual {
         if (to.isContract()) {
             try
-                IERC1155Receiver(to).onERC1155BatchReceived(
-                    operator,
-                    from,
-                    ids,
-                    amounts,
-                    data
-                )
+                IERC1155Receiver(to).onERC1155BatchReceived(operator, from, ids, amounts, data)
             returns (bytes4 response) {
-                if (
-                    response !=
-                    IERC1155Receiver(to).onERC1155BatchReceived.selector
-                ) {
+                if (response != IERC1155Receiver(to).onERC1155BatchReceived.selector) {
                     revert("ERC1155: ERC1155Receiver rejected tokens");
                 }
             } catch Error(string memory reason) {
@@ -594,11 +495,7 @@ contract EthItem is IEthItem, Context, ERC165 {
         }
     }
 
-    function _checkAndInsertSelector(bytes4 selector)
-        internal
-        virtual
-        returns (bool response)
-    {
+    function _checkAndInsertSelector(bytes4 selector) internal virtual returns (bool response) {
         if (_source == address(0)) {
             _registerInterface(selector);
             return true;
@@ -636,12 +533,9 @@ contract EthItem is IEthItem, Context, ERC165 {
         uint256 objectId = oldObjectId;
         IERC20NFTWrapper wrapper = IERC20NFTWrapper(_dest[objectId]);
         if (_dest[objectId] == address(0) || generateObjectId) {
-            require(
-                amount > _getTokenUnity(objectId),
-                "You need to pass more than a token"
-            );
+            require(amount > _getTokenUnity(objectId), "You need to pass more than a token");
             wrapper = IERC20NFTWrapper(_clone(getModel()));
-            if(generateObjectId) {
+            if (generateObjectId) {
                 objectId = uint256(address(wrapper));
             }
             wrapper.init(objectId);
@@ -653,12 +547,7 @@ contract EthItem is IEthItem, Context, ERC165 {
         return (objectId, address(wrapper));
     }
 
-    function _getTokenUnity(uint256 objectId)
-        internal
-        virtual
-        view
-        returns (uint256)
-    {
+    function _getTokenUnity(uint256 objectId) internal virtual view returns (uint256) {
         if (_source == address(0)) {
             return (10**18);
         }
@@ -680,10 +569,10 @@ contract EthItem is IEthItem, Context, ERC165 {
         return amount;
     }
 
-    function _setAndCheckNameAndSymbol(
-        string memory inputName,
-        string memory inputSymbol
-    ) internal virtual {
+    function _setAndCheckNameAndSymbol(string memory inputName, string memory inputSymbol)
+        internal
+        virtual
+    {
         _name = inputName;
         _symbol = inputSymbol;
         if (_source != address(0)) {
@@ -696,9 +585,6 @@ contract EthItem is IEthItem, Context, ERC165 {
             } catch {}
         }
         require(keccak256(bytes(_name)) != keccak256(""), "Name is mandatory");
-        require(
-            keccak256(bytes(_symbol)) != keccak256(""),
-            "Symbol is mandatory"
-        );
+        require(keccak256(bytes(_symbol)) != keccak256(""), "Symbol is mandatory");
     }
 }

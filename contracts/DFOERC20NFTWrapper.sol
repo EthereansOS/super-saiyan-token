@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+pragma solidity >=0.7.0;
 
 import "./IDFOERC20NFTWrapper.sol";
 import "./ISuperSaiyanToken.sol";
@@ -10,13 +10,10 @@ import "../eth-item-token-standard/ERC20NFTWrapper.sol";
  * @title SuperSaiyanToken
  */
 contract DFOERC20NFTWrapper is IDFOERC20NFTWrapper, ERC20NFTWrapper {
-
     function mint(uint256 amount) public virtual override {
         IMVDProxy proxy = IMVDProxy(getProxy());
         require(
-            IMVDFunctionalitiesManager(
-                proxy.getMVDFunctionalitiesManagerAddress()
-            )
+            IMVDFunctionalitiesManager(proxy.getMVDFunctionalitiesManagerAddress())
                 .isAuthorizedFunctionality(msg.sender),
             "Unauthorized action!"
         );
@@ -30,10 +27,10 @@ contract DFOERC20NFTWrapper is IDFOERC20NFTWrapper, ERC20NFTWrapper {
     ) public override(IERC20, ERC20NFTWrapper) returns (bool) {
         _transfer(sender, recipient, amount);
         address txSender = _msgSender();
-        if (txSender == _mainWrapper || ISuperSaiyanToken(_mainWrapper).isApprovedForAll(
-                sender,
-                txSender
-            )) {
+        if (
+            txSender == _mainWrapper ||
+            ISuperSaiyanToken(_mainWrapper).isApprovedForAll(sender, txSender)
+        ) {
             return true;
         }
         address proxy = getProxy();
@@ -65,6 +62,5 @@ contract DFOERC20NFTWrapper is IDFOERC20NFTWrapper, ERC20NFTWrapper {
         return doubleProxy == address(0) ? address(0) : IDoubleProxy(doubleProxy).proxy();
     }
 
-    function setProxy() public override {
-    }
+    function setProxy() public override {}
 }

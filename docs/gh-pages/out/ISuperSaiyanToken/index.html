@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>ISuperSaiyanToken - super-sayan-token</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "ISuperSaiyanToken";
+    var mkdocs_page_input_path = "out/ISuperSaiyanToken.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> super-sayan-token</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">API</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Contracts</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../SuperSayanToken.md">EthItem</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../DFOERC20NFTWrapper/">IERC1155Views</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">super-sayan-token</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>ISuperSaiyanToken</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="contract-isupersaiyantoken">Contract ISuperSaiyanToken</h2>
+<ul>
+<li><strong>Path:</strong> out/ISuperSaiyanToken.sol</li>
+<li><strong>Version:</strong> 1</li>
+<li><strong>Title:</strong> SuperSaiyanToken</li>
+</ul>
+<p>Super Saiya-jin Token is a ethItem Token Standard which includes capabilities to be used as a Voting Tokens for DFO. It is linked to a specific DFO through the Double Proxy, and every funcion that writes on the storage can be just triggered through a Proposal by the Token Holders of the linked DFO.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="balanceofaddressuint256">balanceOf(address,uint256)</h3>
+<p>Returns the amount of tokens of token type <code>id</code> owned by <code>account</code>. Requirements: - <code>account</code> cannot be the zero address.</p>
+<h3 id="balanceofbatchaddressuint256">balanceOfBatch(address[],uint256[])</h3>
+<p>xref:ROOT:erc1155.adoc#batch-operations[Batched] version of {balanceOf}. Requirements: - <code>accounts</code> and <code>ids</code> must have the same length.</p>
+<h3 id="decimalsuint256">decimals(uint256)</h3>
+<p>Returns the decimals of the given token id</p>
+<h4 id="params">Params</h4>
+<ul>
+<li><code>objectId</code>: the id of the token whose decimals you want to know</li>
+</ul>
+<h3 id="doubleproxy">doubleProxy()</h3>
+<p>GET the Double Proxy of the linked DFO</p>
+<h3 id="isapprovedforalladdressaddress">isApprovedForAll(address,address)</h3>
+<p>Returns true if <code>operator</code> is approved to transfer <code>account</code>'s tokens. See {setApprovalForAll}.</p>
+<h3 id="nameuint256">name(uint256)</h3>
+<p>Returns the name of the given token id</p>
+<h4 id="params_1">Params</h4>
+<ul>
+<li><code>objectId</code>: the id of the token whose name you want to know</li>
+</ul>
+<h3 id="onerc1155batchreceivedaddressaddressuint256uint256bytes">onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)</h3>
+<p>Handles the receipt of a multiple ERC1155 token types. This function is called at the end of a <code>safeBatchTransferFrom</code> after the balances have been updated. To accept the transfer(s), this must return <code>bytes4(keccak256("onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)"))</code> (i.e. 0xbc197c81, or its own function selector).</p>
+<h4 id="params_2">Params</h4>
+<ul>
+<li><code>data</code>: Additional data with no specified format</li>
+<li><code>from</code>: The address which previously owned the token</li>
+<li><code>ids</code>: An array containing ids of each token being transferred (order and length must match values array)</li>
+<li><code>operator</code>: The address which initiated the batch transfer (i.e. msg.sender)</li>
+<li><code>values</code>: An array containing amounts of each token being transferred (order and length must match ids array)</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<ul>
+<li><code>_0</code>: <code>bytes4(keccak256("onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)"))</code> if transfer is allowed</li>
+</ul>
+<h3 id="onerc1155receivedaddressaddressuint256uint256bytes">onERC1155Received(address,address,uint256,uint256,bytes)</h3>
+<p>Handles the receipt of a single ERC1155 token type. This function is called at the end of a <code>safeTransferFrom</code> after the balance has been updated. To accept the transfer, this must return <code>bytes4(keccak256("onERC1155Received(address,address,uint256,uint256,bytes)"))</code> (i.e. 0xf23a6e61, or its own function selector).</p>
+<h4 id="params_3">Params</h4>
+<ul>
+<li><code>data</code>: Additional data with no specified format</li>
+<li><code>from</code>: The address which previously owned the token</li>
+<li><code>id</code>: The ID of the token being transferred</li>
+<li><code>operator</code>: The address which initiated the transfer (i.e. msg.sender)</li>
+<li><code>value</code>: The amount of tokens being transferred</li>
+</ul>
+<h4 id="returns_1">Returns</h4>
+<ul>
+<li><code>_0</code>: <code>bytes4(keccak256("onERC1155Received(address,address,uint256,uint256,bytes)"))</code> if transfer is allowed</li>
+</ul>
+<h3 id="safebatchtransferfromaddressaddressuint256uint256bytes">safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)</h3>
+<p>xref:ROOT:erc1155.adoc#batch-operations[Batched] version of {safeTransferFrom}. Emits a {TransferBatch} event. Requirements: - <code>ids</code> and <code>amounts</code> must have the same length. - If <code>to</code> refers to a smart contract, it must implement {IERC1155Receiver-onERC1155BatchReceived} and return the acceptance magic value.</p>
+<h3 id="safetransferfromaddressaddressuint256uint256bytes">safeTransferFrom(address,address,uint256,uint256,bytes)</h3>
+<p>Transfers <code>amount</code> tokens of token type <code>id</code> from <code>from</code> to <code>to</code>. Emits a {TransferSingle} event. Requirements: - <code>to</code> cannot be the zero address. - If the caller is not <code>from</code>, it must be have been approved to spend <code>from</code>'s tokens via {setApprovalForAll}. - <code>from</code> must have a balance of tokens of type <code>id</code> of at least <code>amount</code>. - If <code>to</code> refers to a smart contract, it must implement {IERC1155Receiver-onERC1155Received} and return the acceptance magic value.</p>
+<h3 id="setapprovalforalladdressbool">setApprovalForAll(address,bool)</h3>
+<p>Grants or revokes permission to <code>operator</code> to transfer the caller's tokens, according to <code>approved</code>, Emits an {ApprovalForAll} event. Requirements: - <code>operator</code> cannot be the caller.</p>
+<h3 id="setdoubleproxyaddress">setDoubleProxy(address)</h3>
+<p>SET the Double Proxy of the linked DFO This function can be called just by voting a Proposal in the Linked DFO</p>
+<h4 id="params_4">Params</h4>
+<ul>
+<li><code>newDoubleProxy</code>: represents the address of the new Double Proxy</li>
+</ul>
+<h3 id="seturiuint256string">setUri(uint256,string)</h3>
+<p>SET the URI to locate the Metadata of the Token Id passed in input This function can be called just by voting a Proposal in the Linked DFO It raises the 'UriChanged' event</p>
+<h4 id="params_5">Params</h4>
+<ul>
+<li><code>objectId</code>: the Token Id whose Metadata uri to be set.</li>
+<li><code>uri</code>: the new Metadata uri</li>
+</ul>
+<h3 id="supportsinterfacebytes4">supportsInterface(bytes4)</h3>
+<p>Returns true if this contract implements the interface defined by <code>interfaceId</code>. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.</p>
+<h3 id="symboluint256">symbol(uint256)</h3>
+<p>Returns the symbol of the given token id</p>
+<h4 id="params_6">Params</h4>
+<ul>
+<li><code>objectId</code>: the id of the token whose symbol you want to know</li>
+</ul>
+<h3 id="totalsupplyuint256">totalSupply(uint256)</h3>
+<p>Returns the total supply of the given token id</p>
+<h4 id="params_7">Params</h4>
+<ul>
+<li><code>objectId</code>: the id of the token whose availability you want to know</li>
+</ul>
+<h3 id="uriuint256">uri(uint256)</h3>
+<p>Returns the uri of the given token id</p>
+<h4 id="params_8">Params</h4>
+<ul>
+<li><code>objectId</code>: the id of the token whose uri you want to know</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
