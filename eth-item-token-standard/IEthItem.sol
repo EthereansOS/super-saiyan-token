@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+pragma solidity >=0.7.0;
 
-import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
-import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
 import "./IERC1155Views.sol";
 import "./IERC20NFTWrapper.sol";
 import "./IERC1155Data.sol";
@@ -16,15 +16,9 @@ interface IEthItem is IERC1155, IERC1155Receiver, IERC1155Views, IERC1155Data {
         string calldata symbol
     ) external;
 
-    function fromDecimals(uint256 objectId, uint256 amount)
-        external
-        view
-        returns (uint256);
+    function fromDecimals(uint256 objectId, uint256 amount) external view returns (uint256);
 
-    function toDecimals(uint256 objectId, uint256 amount)
-        external
-        view
-        returns (uint256);
+    function toDecimals(uint256 objectId, uint256 amount) external view returns (uint256);
 
     function getMintData(uint256 objectId)
         external
@@ -41,11 +35,15 @@ interface IEthItem is IERC1155, IERC1155Receiver, IERC1155Views, IERC1155Data {
 
     function asERC20(uint256 objectId) external view returns (IERC20NFTWrapper);
 
-    function emitTransferSingleEvent(address sender, address from, address to, uint256 objectId, uint256 amount) external;
+    function emitTransferSingleEvent(
+        address sender,
+        address from,
+        address to,
+        uint256 objectId,
+        uint256 amount
+    ) external;
 
-    function mint(uint256 amount, string calldata partialUri)
-        external
-        returns (uint256, address);
+    function mint(uint256 amount, string calldata partialUri) external returns (uint256, address);
 
     function burn(
         uint256 objectId,

@@ -1,0 +1,17 @@
+site_name: super-sayan-token
+docs_dir: md-build
+site_dir: gh-pages
+permalink: True
+nav:
+  - Home: README.md
+  - API:
+      - Contracts:
+          - EthItem: out/SuperSayanToken.md
+          - IERC1155Views: out/DFOERC20NFTWrapper.md
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - typescript
+    - javascript

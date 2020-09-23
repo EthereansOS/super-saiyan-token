@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+pragma solidity >=0.7.0;
 
-import "@openzeppelin/contracts/GSN/Context.sol";
-import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/utils/Address.sol";
+import "../node_modules/@openzeppelin/contracts/GSN/Context.sol";
+import "../node_modules/@openzeppelin/contracts/math/SafeMath.sol";
+import "../node_modules/@openzeppelin/contracts/utils/Address.sol";
 import "./IERC20NFTWrapper.sol";
 import "./IEthItem.sol";
 
@@ -27,10 +27,9 @@ contract ERC20NFTWrapper is Context, IERC20NFTWrapper {
 
     function init(uint256 objectId) public virtual override {
         require(_mainWrapper == address(0), "Init already called!");
-        (_name, _symbol, _decimals) = IEthItem(
-            _mainWrapper = msg.sender
-        )
-            .getMintData(_objectId = objectId);
+        (_name, _symbol, _decimals) = IEthItem(_mainWrapper = msg.sender).getMintData(
+            _objectId = objectId
+        );
     }
 
     function mainWrapper() public virtual override view returns (address) {
@@ -57,13 +56,7 @@ contract ERC20NFTWrapper is Context, IERC20NFTWrapper {
         return _totalSupply;
     }
 
-    function balanceOf(address account)
-        public
-        virtual
-        override
-        view
-        returns (uint256)
-    {
+    function balanceOf(address account) public virtual override view returns (uint256) {
         return _balances[account];
     }
 
@@ -75,19 +68,13 @@ contract ERC20NFTWrapper is Context, IERC20NFTWrapper {
     function burn(address owner, uint256 amount) public virtual override {
         require(
             msg.sender == _mainWrapper ||
-                (IEthItem(_mainWrapper).source() == address(0) &&
-                    msg.sender == owner),
+                (IEthItem(_mainWrapper).source() == address(0) && msg.sender == owner),
             "Unauthorized action!"
         );
         _burn(owner, amount);
     }
 
-    function transfer(address recipient, uint256 amount)
-        public
-        virtual
-        override
-        returns (bool)
-    {
+    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
         _transfer(_msgSender(), recipient, amount);
         return true;
     }
@@ -100,20 +87,12 @@ contract ERC20NFTWrapper is Context, IERC20NFTWrapper {
         returns (uint256 allowanceAmount)
     {
         allowanceAmount = _allowances[owner][spender];
-        if (
-            allowanceAmount == 0 &&
-            IEthItem(_mainWrapper).isApprovedForAll(owner, spender)
-        ) {
+        if (allowanceAmount == 0 && IEthItem(_mainWrapper).isApprovedForAll(owner, spender)) {
             allowanceAmount = _totalSupply;
         }
     }
 
-    function approve(address spender, uint256 amount)
-        public
-        virtual
-        override
-        returns (bool)
-    {
+    function approve(address spender, uint256 amount) public virtual override returns (bool) {
         _approve(_msgSender(), spender, amount);
         return true;
     }
@@ -127,12 +106,7 @@ contract ERC20NFTWrapper is Context, IERC20NFTWrapper {
         if (_msgSender() == _mainWrapper) {
             return true;
         }
-        if (
-            !IEthItem(_mainWrapper).isApprovedForAll(
-                sender,
-                _msgSender()
-            )
-        ) {
+        if (!IEthItem(_mainWrapper).isApprovedForAll(sender, _msgSender())) {
             _approve(
                 sender,
                 _msgSender(),
@@ -153,13 +127,16 @@ contract ERC20NFTWrapper is Context, IERC20NFTWrapper {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
 
-        _balances[sender] = _balances[sender].sub(
-            amount,
-            "ERC20: transfer amount exceeds balance"
-        );
+        _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
         _balances[recipient] = _balances[recipient].add(amount);
         emit Transfer(sender, recipient, amount);
-        IEthItem(_mainWrapper).emitTransferSingleEvent(_msgSender(), sender, recipient, _objectId, amount);
+        IEthItem(_mainWrapper).emitTransferSingleEvent(
+            _msgSender(),
+            sender,
+            recipient,
+            _objectId,
+            amount
+        );
     }
 
     function _mint(address account, uint256 amount) internal virtual {
@@ -173,10 +150,7 @@ contract ERC20NFTWrapper is Context, IERC20NFTWrapper {
     function _burn(address account, uint256 amount) internal virtual {
         require(account != address(0), "ERC20: burn from the zero address");
 
-        _balances[account] = _balances[account].sub(
-            amount,
-            "ERC20: burn amount exceeds balance"
-        );
+        _balances[account] = _balances[account].sub(amount, "ERC20: burn amount exceeds balance");
         _totalSupply = _totalSupply.sub(amount);
         emit Transfer(account, address(0), amount);
     }

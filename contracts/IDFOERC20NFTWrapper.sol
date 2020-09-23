@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+pragma solidity >=0.7.0;
 
 import "../eth-item-token-standard/IERC20NFTWrapper.sol";
 
@@ -10,7 +10,6 @@ import "../eth-item-token-standard/IERC20NFTWrapper.sol";
  * It just implements the same funcions of the VotingToken of the DFOProtocol, to let it became a Voting Token
  */
 interface IDFOERC20NFTWrapper is IERC20NFTWrapper {
-
     /**
      * @dev Mint functionality of the voting token
      */
