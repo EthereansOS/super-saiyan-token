@@ -7,11 +7,10 @@
     "build": "node build",
     "docs": "yarn docs:docgen && yarn docs:mkdocs:serve",
     "docs:build": "yarn docs:docgen && yarn docs:mkdocs:build",
-    "docs:clean": "rm -r docs/{md-build,gh-pages}",
+    "docs:clean": "rm -r doc-gen/{md-build,gh-pages}",
     "docs:serve": "yarn docs:docgen && yarn docs:mkdocs:serve",
-    "docs:docgen": "py-solidity-docgen --input out --output docs/md-build && cp *.md docs/md-build",
-    "docs:mkdocs:build": "cd docs && mkdocs build",
-    "docs:mkdocs:serve": "yarn docs:docgen && cd docs && mkdocs serve"
+    "docs:docgen": "py-solidity-docgen --input out --output doc-gen/md-build && cp *.md doc-gen/md-build",
+    "docs:mkdocs:build": "cd doc-gen && mkdocs build"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^3.2.0",

@@ -6,8 +6,8 @@ nav:
   - Home: README.md
   - API:
       - Contracts:
-          - EthItem: out/SuperSayanToken.md
-          - IERC1155Views: out/DFOERC20NFTWrapper.md
+          - SuperSaiyanToken: out/SuperSaiyanToken.md
+          - DFOERC20NFTWrapper: out/DFOERC20NFTWrapper.md
 theme:
   name: readthedocs
   highlightjs: true
