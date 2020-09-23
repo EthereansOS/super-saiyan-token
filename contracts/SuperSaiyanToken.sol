@@ -5,9 +5,6 @@ pragma solidity ^0.6.0;
 import "./ISuperSaiyanToken.sol";
 import "../eth-item-token-standard/EthItem.sol";
 
-/**
- * @title SuperSaiyanToken
- */
 contract SuperSaiyanToken is ISuperSaiyanToken, EthItem(address(0), address(0), "", "") {
 
     address private _doubleProxy;
