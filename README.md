@@ -68,7 +68,7 @@ This is just the beginning!
 
 The Sandbox Quorum is 300,000 SSJ and the max cap is 500,000 you’ll be able to reach it in 4-5 months.
 
-## Early Tests of ITEMs using the <a href="https://github.com/b-u-i-d-l/super-saiyan-token">SSJ Token</a>:
+## Early Tests of ITEMs using the SSJ Token</a>:
 
 ### Uniswap ERC20 Approach
 
