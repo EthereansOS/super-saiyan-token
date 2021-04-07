@@ -12,15 +12,15 @@ By synthesizing the ancient ERC20 technique with the advanced ERC1155 one, we ha
 
 As both a governance token to manage proposals for the buidlers’ Sandbox DFO and an upgradeable digital art NFT, the SSJ token is the first example of what can be accomplished by innovating with the state of the art ethItem technology. 
 
-<a href="https://github.com/b-u-i-d-l/eth-item-token-standard">More about EthItem Token Standard</a>
+<a href="https://ethos.eth.link/items.html">More about EthItem Token Standard</a>
 
 We await to see what else the Ethereum galaxy brings…
 
-<img src="https://raw.githubusercontent.com/b-u-i-d-l/super-saiyan-token/master/ssj.gif">
+<img src="https://raw.githubusercontent.com/ethereansos/super-saiyan-token/master/ssj.gif">
 
 ### Let the customizations begin!
 
-Super Saiya-jin Token (SSJ) is our first experiment involving the new <a href="https://github.com/b-u-i-d-l/eth-item-token-standard">ethItem token standard</a>.
+Super Saiya-jin Token (SSJ) is our first experiment involving the ITEMS standard.
 
 ### It is an ERC1155 NFT:
 
